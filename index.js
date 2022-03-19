@@ -119,6 +119,8 @@ const main = async () => {
       const groupDesc = isGroup ? groupMetadata.desc : "";
       const groupMembers = isGroup ? groupMetadata.participants : "";
       const groupAdmins = isGroup ? getGroupAdmins(groupMembers) : "";
+      const isBotGroupAdmins = groupAdmins.includes(botNumberJid) || false;
+      const isGroupAdmins = groupAdmins.includes(sender) || false;
 
       if (
         isGroup &&
@@ -249,10 +251,15 @@ const main = async () => {
               reply("❌ Group command only!");
               return;
             }
-            if (!allowedNumb.includes(sender)) {
-              reply(`❌ Not Allowed!`);
+            // if (!allowedNumb.includes(sender)) {
+            //   reply(`❌ Not Allowed!`);
+            //   return;
+            // }
+            if (!isGroupAdmins) {
+              reply(`❌ Admin command!`);
               return;
             }
+
             let resultCountGroupIndi = await getCountGroupMembersTM(from);
             let memWithMsg = new Set();
             for (let member of resultCountGroupIndi) {
@@ -278,10 +285,15 @@ const main = async () => {
               reply("❌ Group command only!");
               return;
             }
-            if (!allowedNumb.includes(sender)) {
-              reply(`❌ Not Allowed!`);
+            // if (!allowedNumb.includes(sender)) {
+            //   reply(`❌ Not Allowed!`);
+            //   return;
+            // }
+            if (!isGroupAdmins) {
+              reply(`❌ Admin command!`);
               return;
             }
+
             let resultCountGroup = await getCountGroups();
             let countGroupMsg = `*📛 PVX GROUP STATS 📛*\n_From 24 Nov 2021_${readMore}\n`;
 
@@ -317,8 +329,12 @@ const main = async () => {
               reply("❌ Group command only!");
               return;
             }
-            if (!allowedNumb.includes(sender)) {
-              reply(`❌ Not Allowed!`);
+            // if (!allowedNumb.includes(sender)) {
+            //   reply(`❌ Not Allowed!`);
+            //   return;
+            // }
+            if (!isGroupAdmins) {
+              reply(`❌ Admin command!`);
               return;
             }
 
@@ -410,8 +426,12 @@ const main = async () => {
               reply("❌ Group command only!");
               return;
             }
-            if (!allowedNumb.includes(sender)) {
-              reply(`❌ Not Allowed!`);
+            // if (!allowedNumb.includes(sender)) {
+            //   reply(`❌ Not Allowed!`);
+            //   return;
+            // }
+            if (!isGroupAdmins) {
+              reply(`❌ Admin command!`);
               return;
             }
 
@@ -468,10 +488,15 @@ const main = async () => {
               reply("❌ Group command only!");
               return;
             }
-            if (!allowedNumb.includes(sender)) {
-              reply(`❌ Not Allowed!`);
+            // if (!allowedNumb.includes(sender)) {
+            //   reply(`❌ Not Allowed!`);
+            //   return;
+            // }
+            if (!isGroupAdmins) {
+              reply(`❌ Admin command!`);
               return;
             }
+
             let resultCountGroup = await getCountGroupsTM();
             let countGroupMsg = `*📛 PVX GROUP STATS 📛*\n_THIS MONTH_${readMore}\n`;
 
@@ -507,8 +532,12 @@ const main = async () => {
               reply("❌ Group command only!");
               return;
             }
-            if (!allowedNumb.includes(sender)) {
-              reply(`❌ Not Allowed!`);
+            // if (!allowedNumb.includes(sender)) {
+            //   reply(`❌ Not Allowed!`);
+            //   return;
+            // }
+            if (!isGroupAdmins) {
+              reply(`❌ Admin command!`);
               return;
             }
 
@@ -544,8 +573,12 @@ const main = async () => {
               reply("❌ Group command only!");
               return;
             }
-            if (!allowedNumb.includes(sender)) {
-              reply(`❌ Not Allowed!`);
+            // if (!allowedNumb.includes(sender)) {
+            //   reply(`❌ Not Allowed!`);
+            //   return;
+            // }
+            if (!isGroupAdmins) {
+              reply(`❌ Admin command!`);
               return;
             }
 
@@ -601,8 +634,12 @@ const main = async () => {
               reply("❌ Group command only!");
               return;
             }
-            if (!allowedNumb.includes(sender)) {
-              reply(`❌ Not Allowed!`);
+            // if (!allowedNumb.includes(sender)) {
+            //   reply(`❌ Not Allowed!`);
+            //   return;
+            // }
+            if (!isGroupAdmins) {
+              reply(`❌ Admin command!`);
               return;
             }
 
