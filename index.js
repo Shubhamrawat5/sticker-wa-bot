@@ -128,7 +128,14 @@ const main = async () => {
         from !== pvxstickeronly1 &&
         from != pvxstickeronly2
       ) {
-        setCountMember(sender, from);
+        let user = conn.contacts[sender];
+        let username = user
+          ? user.notify ||
+            user.vname ||
+            user.name ||
+            member.memberjid.split("@")[0]
+          : member.memberjid.split("@")[0];
+        setCountMember(sender, from, username);
         setCountMemberTM(sender, from);
       }
 

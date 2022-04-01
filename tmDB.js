@@ -59,10 +59,19 @@ module.exports.setCountMemberTM = async (memberJid, groupJid) => {
   await createCountMemberTable();
 
   //check if groupjid is present in DB or not
-  let result = await pool.query(
-    "select * from countmember WHERE memberjid=$1 AND groupjid=$2;",
-    [memberJid, groupJid]
-  );
+  let result;
+  try {
+    result = await pool.query(
+      "select * from countmember WHERE memberjid=$1 AND groupjid=$2;",
+      [memberJid, groupJid]
+    );
+  } catch (err) {
+    await createCountMemberTable();
+    result = await pool.query(
+      "select * from countmember WHERE memberjid=$1 AND groupjid=$2;",
+      [memberJid, groupJid]
+    );
+  }
 
   //present
   if (result.rows.length) {
