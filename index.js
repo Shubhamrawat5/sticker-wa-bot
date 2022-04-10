@@ -10,6 +10,15 @@ app.listen(port, () => {
   console.log("\nWeb-server running!\n");
 });
 
+/* -------------------------- delete auth from url -------------------------- */
+const authHiddenPath = process.env.authHiddenPath; //to have a hidden path for auth db deletion
+const { dropAuth } = require("./DB/authDBdelete");
+app.get("/" + authHiddenPath, async (req, res) => {
+  let response = await dropAuth();
+  if (response) res.send("Auth DB deleted!");
+  else res.send("There is some error!");
+});
+
 // setTimeout(() => {
 //   process.exit();
 // }, 1000 * 60 * 60 * 3); //3 hours
@@ -27,14 +36,14 @@ const {
   getCountGroups,
   getCountGroupMembers,
   getCountTop,
-} = require("./countMemberDB");
+} = require("./DB/countMemberDB");
 const {
   setCountMemberTM,
   getCountGroupsTM,
   getCountGroupMembersTM,
   getCountTopTM,
-} = require("./tmDB");
-const { setCountVideo, getCountVideo } = require("./videoDB");
+} = require("./DB/tmDB");
+const { setCountVideo, getCountVideo } = require("./DB/videoDB");
 
 prefix = "?";
 
@@ -67,7 +76,7 @@ const WSF = require("wa-sticker-formatter");
 
 //MAIN FUNCTION
 const main = async () => {
-  const { connectToWA } = require("./authDBheroku");
+  const { connectToWA } = require("./DB/authDBheroku");
   const conn = await connectToWA(WAConnection);
   let botNumberJid = conn.user.jid;
 
